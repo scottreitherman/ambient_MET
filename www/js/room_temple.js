@@ -60,14 +60,14 @@ function preload() {
     jungles.push(jungle);
   }
 
- // img = loadImage("../img/am_back10a.jpg");
+ img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/egypt_room.jpg");
 }
 
 function setup() {
   //  createCanvas(1000, 650);
   createCanvas(windowWidth, windowHeight);
   noCursor();
-  //image(img, 0, 0, width, height);
+  image(img, 0, 0, width, height);
 
 //  textFont("Unica One");
 
