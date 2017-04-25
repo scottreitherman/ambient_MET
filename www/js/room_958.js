@@ -32,32 +32,31 @@ function preload() {
     //   jups.push(jup);
     // }
 
-  bottom4 = loadSound('img/mp3/jup1.mp3');
-  bottom5 = loadSound('p5pianoG4.mp3');
+  bottom4 = loadSound('https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/jup1.mp3');
+//  bottom5 = loadSound('https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/p5pianoG4.mp3');
 
   for (var i = 0; i < 4; i++) {
-    var p5piano = loadSound("http://scott.3laab.com/p5piano" + i + ".mp3");
+    var p5piano = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/p5piano" + i + ".mp3");
     p5pianos.push(p5piano);
   }
 
-  // for (var i = 0; i < 4; i++) {
-  //   var p5pianoG = loadSound("../img/mp3/p5piano" + i + ".mp3");
-  //   console.log(p5pianoG)
-  //   p5pianoGs.push(p5pianoG);
-  // }
+  for (var i = 0; i < 4; i++) {
+    var p5pianoG = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/p5pianoG" + i + ".mp3");
+    p5pianoGs.push(p5pianoG);
+  }
 
   for (var i = 0; i < 4; i++) {
-    var arp = loadSound("http://scott.3laab.com/arp_delaypad_G" + i + ".mp3");
+    var arp = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/arp_delaypad_G" + i + ".mp3");
     arps.push(arp);
   }
 
   for (var i = 0; i < 4; i++) {
-    var harp = loadSound("http://scott.3laab.com/backwardsHarp" + i + ".mp3");
+    var harp = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/backwardsHarp" + i + ".mp3");
     harps.push(harp);
   }
 
   for (var i = 0; i < 5; i++) {
-    var jungle = loadSound("http://scott.3laab.com/jungle" + i + ".mp3");
+    var jungle = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/jungle" + i + ".mp3");
     jungles.push(jungle);
   }
 
@@ -80,7 +79,7 @@ function setup() {
 
   textSize(32);
   fill("BLACK");
-  text("E G Y P T I A N  r o o m", ((width / 20)), (height - (height / 20)));
+  text("R O O M  9 5 8", ((width / 20)), (height - (height / 15)));
 
 
 }
@@ -162,20 +161,20 @@ Ball.prototype.update = function() {
 Ball.prototype.display = function() {
   noStroke();
   colorMode(HSB);
-  fill(200, 90, 80);
+  fill(100, 90, 80);
   ellipse(this.position.x, this.position.y, this.mass, this.mass);
 };
 
 Ball.prototype.displayRect = function() {
   noStroke();
-  fill(265, 36, 83);
+  fill(165, 36, 83);
   rect(this.recPosition.x, this.recPosition.y, this.recWidth, this.recHeight);
 }
 
 Ball.prototype.btnDisplay = function() {
   // draw a reactangle as a button
   noStroke();
-  fill(0, 0, 88);
+  fill(100, 0, 88);
   rect(this.btnPosition.x, this.btnPosition.y, (width / 13.33), (height / 32.5));
 };
 
@@ -189,8 +188,7 @@ Ball.prototype.checkEdges = function() {
   }
   if (this.position.y > (this.recPosition.y + this.recHeight) - (width / 40 + (width / 200))) {
     if (this.sound === 0) {
-      p5piano = p5pianoGs[1];
-      console.log(p5piano)
+      p5piano = p5pianos[Math.floor(random(0, 3))];
       p5piano.play();
       p5piano.setVolume(0.1);
 
