@@ -89,7 +89,7 @@ function setup() {
   }
 
   textSize(32);
-  fill("BLACK");
+  fill("WHITE");
   text("E G Y P T I A N  t e m p l e", ((width / 20)), (height - (height / 15)));
 
 
