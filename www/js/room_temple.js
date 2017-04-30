@@ -23,6 +23,19 @@ var jungles = [];
 var jungle;
 var jups = [];
 var jup;
+var brassbowls = [];
+var brassbowl;
+var mks = [];
+var mk;
+var crotales = [];
+var crotale;
+var cpPongs = [];
+var cpPong;
+var muteds = [];
+var muted;
+var chords = [];
+var chord;
+
 
 function preload() {
   // Sound assets preload
