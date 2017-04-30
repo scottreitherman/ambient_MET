@@ -60,14 +60,14 @@ function preload() {
     jungles.push(jungle);
   }
 
- // img = loadImage("../img/am_back10a.jpg");
+  img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/room_958_web.jpg");
 }
 
 function setup() {
   //  createCanvas(1000, 650);
   createCanvas(windowWidth, windowHeight);
   noCursor();
-  //image(img, 0, 0, width, height);
+  image(img, 0, 0, width, height);
 
 //  textFont("Unica One");
 
@@ -109,9 +109,9 @@ function draw() {
 function touchStarted() {
   // go through each ball object
   for (var i = 0; i < balls.length; i++) {
-    // to see if the mouse is on the reactanle or not
-    if (touchX > balls[i].btnPosition.x && touchX < balls[i].btnPosition.x + (width / 13.33) &&
-      touchY > balls[i].btnPosition.y && touchY < (height - balls[i].recPosition.y)) {
+    var d = dist(touchX, touchY, balls[i].position.x, balls[i].position.y);
+    // to see if the mouse is within the ball or not
+    if (d < 20.2) {
       balls[i].move = !balls[i].move;
     }
   }
@@ -161,20 +161,20 @@ Ball.prototype.update = function() {
 Ball.prototype.display = function() {
   noStroke();
   colorMode(HSB);
-  fill(100, 90, 80);
+  fill(100, 90, 80, 10);
   ellipse(this.position.x, this.position.y, this.mass, this.mass);
 };
 
 Ball.prototype.displayRect = function() {
   noStroke();
-  fill(165, 36, 83);
+  fill(165, 36, 83, 10);
   rect(this.recPosition.x, this.recPosition.y, this.recWidth, this.recHeight);
 }
 
 Ball.prototype.btnDisplay = function() {
   // draw a reactangle as a button
   noStroke();
-  fill(100, 0, 88);
+  fill(100, 0, 88, 10);
   rect(this.btnPosition.x, this.btnPosition.y, (width / 13.33), (height / 32.5));
 };
 

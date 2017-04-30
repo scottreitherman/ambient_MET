@@ -60,14 +60,14 @@ function preload() {
     jungles.push(jungle);
   }
 
- // img = loadImage("../img/am_back10a.jpg");
+   img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/american_wing_web.jpg");
 }
 
 function setup() {
   //  createCanvas(1000, 650);
   createCanvas(windowWidth, windowHeight);
   noCursor();
-  //image(img, 0, 0, width, height);
+  image(img, 0, 0, width, height);
 
 //  textFont("Unica One");
 
@@ -109,13 +109,12 @@ function draw() {
 function touchStarted() {
   // go through each ball object
   for (var i = 0; i < balls.length; i++) {
-    // to see if the mouse is on the reactanle or not
-    if (touchX > balls[i].btnPosition.x && touchX < balls[i].btnPosition.x + (width / 13.33) &&
-      touchY > balls[i].btnPosition.y && touchY < (height - balls[i].recPosition.y)) {
+    var d = dist(touchX, touchY, balls[i].position.x, balls[i].position.y);
+    // to see if the mouse is within the ball or not
+    if (d < 20.2) {
       balls[i].move = !balls[i].move;
     }
   }
-
   // if (touchX > 590 && touchX < 660 && touchY > 610 && touchY < 680) {
   //   recorder.record(soundFile);
   //   console.log("recording");

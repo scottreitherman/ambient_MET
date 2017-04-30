@@ -9,7 +9,7 @@
 var recorder, soundOut, soundFile;
 var img;
 var state = 0; // mousePress will increment from Record, to Stop, to
-
+var dt = new Date();
 var balls = [];
 var p5pianos = [];
 var p5piano;
@@ -60,7 +60,7 @@ function preload() {
     jungles.push(jungle);
   }
 
- img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/egypt_room.jpg");
+ img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/temple_web.jpg");
 }
 
 function setup() {
@@ -69,6 +69,17 @@ function setup() {
   noCursor();
   image(img, 0, 0, width, height);
 
+  // var dt = new Date();
+  //       currentHours = dt.getHours();
+  //       currentHours = ("0" + currentHours).slice(-2);
+  //       currentMinutes = dt.getMinutes();
+  //       currentMinutes = ("0" + currentMinutes).slice(-2);
+  //       currentSeconds = dt.getSeconds();
+  //       currentSeconds = ("0" + currentSeconds).slice(-2);
+  //       var time = currentHours+":"+currentMinutes+":"+currentSeconds;
+  //       var formData = $(this).serialize() + '&time=' + time;
+  //
+  // console.log(time);
 //  textFont("Unica One");
 
   // FOR loop to push each ball object.
@@ -109,9 +120,9 @@ function draw() {
 function touchStarted() {
   // go through each ball object
   for (var i = 0; i < balls.length; i++) {
-    // to see if the mouse is on the reactanle or not
-    if (touchX > balls[i].btnPosition.x && touchX < balls[i].btnPosition.x + (width / 13.33) &&
-      touchY > balls[i].btnPosition.y && touchY < (height - balls[i].recPosition.y)) {
+    var d = dist(touchX, touchY, balls[i].position.x, balls[i].position.y);
+    // to see if the mouse is within the ball or not
+    if (d < 20.2) {
       balls[i].move = !balls[i].move;
     }
   }
