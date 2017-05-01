@@ -48,8 +48,9 @@ var piano;
 var p5pianoGs = [];
 var p5pianoG;
 
-
-
+var touchStart;
+var touchEnd;
+var currentBall;
 
 function preload() {
   // Sound assets preload
@@ -59,7 +60,7 @@ function preload() {
     //   jups.push(jup);
     // }
 
-  bottom4 = loadSound('https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/jup1.mp3');
+//  bottom4 = loadSound('https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/jup1.mp3');
 //  bottom5 = loadSound('https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/p5pianoG4.mp3');
 
 
@@ -68,14 +69,14 @@ function preload() {
    crotales.push(crotale);
   }
 
- for (var i = 0; i < 3; i++) {
-   var granulator = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/granulatorA" + i + ".mp3");
-   granulators.push(granulator);
+ for (var i = 0; i < 4; i++) {
+   var crotaleHigh = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/crotale_high" + i + ".mp3");
+   crotaleHighs.push(crotaleHigh);
   }
 
   for (var i = 0; i < 4; i++) {
-    var crotaleHigh = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/crotale_high" + i + ".mp3");
-    crotaleHighs.push(crotaleHigh);
+    var harp = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/backwardsHarp" + i + ".mp3");
+    harps.push(harp);
   }
 
   for (var i = 0; i < 2; i++) {
@@ -84,7 +85,7 @@ function preload() {
   }
 
   for (var i = 0; i < 5; i++) {
-    var chimes = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/chime" + i + ".mp3");
+    var chime = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/chime" + i + ".mp3");
     chimes.push(chime);
   }
 
@@ -100,7 +101,7 @@ function setup() {
   //  createCanvas(1000, 650);
   createCanvas(windowWidth, windowHeight);
   noCursor();
-  image(img, 0, 0, width, height);
+  // image(img, 0, 0, width, height);
 
   // var dt = new Date();
   //       currentHours = dt.getHours();
@@ -113,53 +114,90 @@ function setup() {
   //       var formData = $(this).serialize() + '&time=' + time;
   //
   // console.log(time);
-//  textFont("Unica One");
+ // textFont("Times New Roman");
 
   // FOR loop to push each ball object.
   for (var i = 0; i < 6; i++) {
-    balls.push(new Ball(createVector((width / 10) + i * (width / 6.33), (width / 7.69)), createVector((width / 20) + i * (width / 6.33), (width / 33.3)), (width / 20.2), createVector((width / 20) + (width / 6.33) * i, (height / 13)), (width / 13.33), (height / 2.16) + i * (height / 13), i, false));
+    balls.push(new Ball(createVector((width / 10) + i * (width / 6.33), (width / 7.69)), (width / 20.2), createVector((width / 20) + (width / 6.33) * i, (height / 13)), (width / 13.33), (height / 2.16) + i * (height / 13), i, false));
     // balls.push(new Ball(createVector(100 + i * 150, 130), createVector(50 + i * 150, 30), 50, createVector(50 + 150 * i, 50), 75, 300 + i * 50, i, false));
   }
 
-  textSize(32);
-  fill("WHITE");
-  text("E G Y P T I A N  t e m p l e", ((width / 20)), (height - (height / 15)));
+  // textSize(48);
+  // fill(265, 236, 183);
+  // text("E G Y P T I A N  t e m p l e", ((width / 25)), (height - (height / 12)));
 
 
 }
 
 function draw() {
+    image(img, 0, 0, width, height);
+    textSize(40);
+    fill(265, 236, 183);
+    textFont("Arial Black");
+    text("E G Y P T I A N  t e m p l e", ((width / 25)), (height - (height / 12)));
+
+
   // Forces on ball
   var gravity = createVector(0, 0.000001);
   // var wind = createVector(0, 0.001);
 
 
   for (var i = 0; i < balls.length; i++) {
-    balls[i].btnDisplay();
+    // balls[i].btnDisplay();
     balls[i].applyForce(gravity);
     // balls[i].applyForce(wind
-
+    balls[i].displayRect();
+    balls[i].display();
+    balls[i].checkEdges();
     // IF statement about the true/false button pressed for un/freeze ball motion
     if (balls[i].move) {
       balls[i].update();
-      balls[i].displayRect();
-      balls[i].display();
-      balls[i].checkEdges();
-    } else balls[i].displayRect();
+    }
+      // balls[i].displayRect();
+      // balls[i].display();
+      // balls[i].checkEdges();
+    // } else balls[i].displayRect();
+    balls[i].displayRect();
     balls[i].display();
   }
 }
 
 function touchStarted() {
+  println("touchstarteeeeeed");
   // go through each ball object
   for (var i = 0; i < balls.length; i++) {
     var d = dist(touchX, touchY, balls[i].position.x, balls[i].position.y);
     // to see if the mouse is within the ball or not
     if (d < 20.2) {
-      balls[i].move = !balls[i].move;
+      // balls[i].move = !balls[i].move;
+      balls[i].move = false;
+      touchStart = createVector(touchX, touchY);
+      currentBall = balls[i];
     }
   }
+}
 
+
+function touchEnded() {
+  if (currentBall != null) {
+  var touchEnd = createVector(touchX, touchY);
+  touchEnd.sub(touchStart);
+  touchEnd.div(100);
+  currentBall.velocity = touchEnd;
+  currentBall.move = true;
+  println("made it to touch eneddd");
+  currentBall = null;
+}
+  return false;
+}
+
+function touchMoved()  {
+  if (currentBall != null) {
+  currentBall.position = createVector(touchX, touchY);
+  println("touch has moved")
+}
+    return false;
+}
   // if (touchX > 590 && touchX < 660 && touchY > 610 && touchY < 680) {
   //   recorder.record(soundFile);
   //   console.log("recording");
@@ -170,7 +208,7 @@ function touchStarted() {
   //   soundFile.play();
   //   console.log("playing");
   // }
-}
+
 
 function display() {
   //	this.balls[i].applyForce(wind);
@@ -181,9 +219,9 @@ function display() {
 }
 
 // added btnPosition to represent the position of the button, and boolean variable move.
-function Ball(position, btnPosition, mass, recPosition, recWidth, recHeight, sound, move) {
+function Ball(position, mass, recPosition, recWidth, recHeight, sound, move) {
   this.position = position;
-  this.btnPosition = btnPosition;
+//  this.btnPosition = btnPosition;
   // speedX = some number between -1 and 1
   // speedY = some number between -1 and 0
   this.velocity = createVector(random(-.5, 1), random(-1, 0));
@@ -204,23 +242,26 @@ Ball.prototype.update = function() {
 
 Ball.prototype.display = function() {
   noStroke();
-  colorMode(HSB);
-  fill(200, 90, 80);
+  //colorMode(HSB);
+  fill(265, 36, 83);
   ellipse(this.position.x, this.position.y, this.mass, this.mass);
 };
 
 Ball.prototype.displayRect = function() {
-  noStroke();
-  fill(265, 36, 83);
-  rect(this.recPosition.x, this.recPosition.y, this.recWidth, this.recHeight);
+  //noStroke();
+  fill(265, 236, 183, 5);
+  // noFill();
+  strokeWeight(5);
+  stroke(265, 236, 183);
+  rect(this.recPosition.x, this.recPosition.y, this.recWidth, this.recHeight, 20);
 }
 
-Ball.prototype.btnDisplay = function() {
-  // draw a reactangle as a button
-  noStroke();
-  fill(0, 0, 88);
-  rect(this.btnPosition.x, this.btnPosition.y, (width / 13.33), (height / 32.5));
-};
+// Ball.prototype.btnDisplay = function() {
+//   // draw a reactangle as a button
+//   noStroke();
+//   fill(0, 0, 88);
+//   rect(this.btnPosition.x, this.btnPosition.y, (width / 13.33), (height / 32.5));
+// };
 
 Ball.prototype.checkEdges = function() {
   if (this.position.x > (this.recPosition.x + (this.recWidth - (width / 40 + 1)))) {
@@ -234,22 +275,22 @@ Ball.prototype.checkEdges = function() {
     if (this.sound === 0) {
       crotale = crotales[Math.floor(random(0, 4))];
       crotale.play();
-      crotale.setVolume(0.7);
+      crotale.setVolume(1);
 
     } else if (this.sound === 1) {
-      granulator = granulators[Math.floor(random(0, 3))];
-      granulator.play();
-      granulator.setVolume(0.8);
+      crotaleHigh = crotaleHighs[Math.floor(random(0, 4))];
+      crotaleHigh.play();
+      crotaleHigh.setVolume(1);
 
     } else if (this.sound === 2) {
       choir = choirs[Math.floor(random(0, 2))];
       choir.play();
-      choir.setVolume(0.8);
+      choir.setVolume(0.3);
 
     } else if (this.sound === 3) {
       harp = harps[Math.floor(random(0, 4))];
       harp.play();
-      harp.setVolume(0.3);
+      harp.setVolume(0.1);
 
     } else if (this.sound === 4) {
       chime = chimes[Math.floor(random(0, 5))];
@@ -259,7 +300,7 @@ Ball.prototype.checkEdges = function() {
     } else if (this.sound === 5) {
       jungle = jungles[Math.floor(random(0, 4))];
       jungle.play();
-      jungle.setVolume(0.2);
+      jungle.setVolume(0.1);
     }
 
     this.velocity.y *= -1;
