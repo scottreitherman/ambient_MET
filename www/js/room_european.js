@@ -258,7 +258,7 @@ Ball.prototype.checkEdges = function() {
       chime = chimes[Math.floor(random(0, 5))];
       chime.play();
       // reverb.process(chime, 3, 2);
-      chime.setVolume(0.5);
+      chime.setVolume(0.1);
 
     } else if (this.sound === 5) {
       brassbowl = brassbowls[Math.floor(random(0, 7))];

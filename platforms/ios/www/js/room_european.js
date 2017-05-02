@@ -3,7 +3,7 @@
 var recorder, soundOut, soundFile;
 var img;
 var state = 0; // mousePress will increment from Record, to Stop, to
-var dt = new Date();
+// var dt = new Date();
 var balls = [];
 
 var roomSoundEuropean;
@@ -52,24 +52,29 @@ function preload() {
   // Sound assets preload
   roomSoundEuropean = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/european_roomsound.mp3");
 
+ for (var i = 0; i < 3; i++) {
+   var arp = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/arp_delaypad_G" + i + ".mp3");
+   arps.push(arp);
+  }
+
  for (var i = 0; i < 4; i++) {
    var crotale = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/crotale" + i + ".mp3");
    crotales.push(crotale);
   }
 
- for (var i = 0; i < 4; i++) {
-   var crotaleHigh = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/crotale_high" + i + ".mp3");
-   crotaleHighs.push(crotaleHigh);
+  for (var i = 0; i < 7; i++) {
+    var brassbowl = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/brassbowl" + i + ".mp3");
+    brassbowls.push(brassbowl);
+  }
+
+  for (var i = 0; i < 3; i++) {
+    var choirLow = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/choirlow" + i + ".mp3");
+    choirLows.push(choirLow);
   }
 
   for (var i = 0; i < 4; i++) {
-    var harp = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/backwardsHarp" + i + ".mp3");
-    harps.push(harp);
-  }
-
-  for (var i = 0; i < 2; i++) {
-    var choir = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/choir" + i + ".mp3");
-    choirs.push(choir);
+    var crotaleHigh = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/crotale_high" + i + ".mp3");
+    crotaleHighs.push(crotaleHigh);
   }
 
   for (var i = 0; i < 5; i++) {
@@ -77,20 +82,17 @@ function preload() {
     chimes.push(chime);
   }
 
-  for (var i = 0; i < 5; i++) {
-    var jungle = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/jungle" + i + ".mp3");
-    jungles.push(jungle);
-  }
 
-
-  img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/european_wing_web.jpg");
+ img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/european_wing_web_2.jpg");
 
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   noCursor();
-  // image(img, 0, 0, width, height);
+  image(img, 0, 0, width, height);
+  reverb = new p5.Reverb();
+
 
   roomSoundEuropean.loop();
   roomSoundEuropean.setVolume(0.3);
@@ -103,11 +105,11 @@ function setup() {
 }
 
 function draw() {
-  image(img, 0, 0, width, height);
-  textSize(40);
-  textFont("Arial Black");
+  // image(img, 0, 0, width, height);
+  textSize(32);
   fill("BLACK");
-  text("E U R O P E A N  s c u l p t u r e", ((width / 20)), (height - (height / 15)));
+  textFont("HelveticaNeue-Bold");
+  text("European Sculpture", ((width / 20)), (height - (height / 15)));
 
   // Forces on ball
   var gravity = createVector(0, 0.000001);
@@ -204,16 +206,16 @@ Ball.prototype.update = function() {
 Ball.prototype.display = function() {
   noStroke();
   //colorMode(HSB);
-  fill(265, 236, 183);
+  fill(180, 180, 180);
   ellipse(this.position.x, this.position.y, this.mass, this.mass);
 };
 
 Ball.prototype.displayRect = function() {
   //noStroke();
-  fill(265, 36, 83, 5);
+  fill(235, 175, 108, 5);
   // noFill();
   strokeWeight(5);
-  stroke(265, 36, 83);
+  stroke(235, 175, 108);
   rect(this.recPosition.x, this.recPosition.y, this.recWidth, this.recHeight, 20);
 }
 
@@ -229,32 +231,40 @@ Ball.prototype.checkEdges = function() {
     if (this.sound === 0) {
       crotale = crotales[Math.floor(random(0, 4))];
       crotale.play();
-      crotale.setVolume(1);
+      // reverb.process(crotale, 5, 5);
+      crotale.pan(-1.0);
+      crotale.setVolume(0.3);
 
     } else if (this.sound === 1) {
       crotaleHigh = crotaleHighs[Math.floor(random(0, 4))];
       crotaleHigh.play();
-      crotaleHigh.setVolume(1);
+      // reverb.process(crotaleHigh, 5, 5);
+      crotaleHigh.pan(1.0);
+      crotaleHigh.setVolume(0.3);
 
     } else if (this.sound === 2) {
-      choir = choirs[Math.floor(random(0, 2))];
-      choir.play();
-      choir.setVolume(0.3);
+      arp = arps[Math.floor(random(0, 3))];
+      arp.play();
+      arp.pan(-0.7);
+      arp.setVolume(0.05);
 
     } else if (this.sound === 3) {
-      harp = harps[Math.floor(random(0, 4))];
-      harp.play();
-      harp.setVolume(0.1);
+      choirLow = choirLows[Math.floor(random(0, 3))];
+      choirLow.play();
+      // reverb.process(choirLow, 5, 5);
+      choirLow.setVolume(0.2);
 
     } else if (this.sound === 4) {
       chime = chimes[Math.floor(random(0, 5))];
       chime.play();
-      chime.setVolume(0.8);
+      // reverb.process(chime, 3, 2);
+      chime.setVolume(0.5);
 
     } else if (this.sound === 5) {
-      jungle = jungles[Math.floor(random(0, 4))];
-      jungle.play();
-      jungle.setVolume(0.1);
+      brassbowl = brassbowls[Math.floor(random(0, 7))];
+      brassbowl.play();
+      // reverb.process(brassbowl, 2, 2);
+      brassbowl.setVolume(0.3);
     }
 
     this.velocity.y *= -1;
