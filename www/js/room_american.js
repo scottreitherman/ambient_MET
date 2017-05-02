@@ -81,6 +81,7 @@ function preload() {
 }
 
 function setup() {
+  //  createCanvas(1000, 650);
   createCanvas(windowWidth, windowHeight);
   noCursor();
   image(img, 0, 0, width, height);
@@ -218,7 +219,7 @@ Ball.prototype.update = function() {
 Ball.prototype.display = function() {
   noStroke();
   //colorMode(HSB);
-  fill(180, 180, 180);
+  fill(180, 180, 220);
   ellipse(this.position.x, this.position.y, this.mass, this.mass);
 };
 

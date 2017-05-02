@@ -67,7 +67,7 @@ function preload() {
   }
 
   for (var i = 0; i < 2; i++) {
-    var clockgrain = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/backwardsHarp" + i + ".mp3");
+    var clockgrain = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/clockgrain" + i + ".mp3");
     clockgrains.push(clockgrain);
   }
 
@@ -86,13 +86,13 @@ function preload() {
     muteds.push(muted);
   }
 
- img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/room_958_web_3.jpg");
+ img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/room_958_web.jpg");
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   noCursor();
-  // image(img, 0, 0, width, height);
+  image(img, 0, 0, width, height);
 
   // var dt = new Date();
   //       currentHours = dt.getHours();
@@ -118,11 +118,12 @@ function setup() {
 }
 
 function draw() {
-    image(img, 0, 0, width, height);
-    textSize(40);
-    fill("BLUE");
-    textFont("Arial Black");
-    text("R O O M  9 5 8", ((width / 25)), (height - (height / 12)));
+//    image(img, 0, 0, width, height);
+textSize(32);
+fill("BLACK");
+textFont("HelveticaNeue-Bold");
+text("Room 958", ((width / 25)), (height - (height / 12)));
+
 
   // Forces on ball
   var gravity = createVector(0, 0.000001);
@@ -216,16 +217,16 @@ Ball.prototype.update = function() {
 Ball.prototype.display = function() {
   noStroke();
   //colorMode(HSB);
-  fill(265, 36, 83);
+  fill(180, 180, 180);
   ellipse(this.position.x, this.position.y, this.mass, this.mass);
 };
 
 Ball.prototype.displayRect = function() {
   //noStroke();
-  fill(265, 236, 183, 55);
+  fill(140, 75, 215, 5);
   // noFill();
   strokeWeight(5);
-  stroke(265, 236, 183);
+  stroke(140, 75, 215);
   rect(this.recPosition.x, this.recPosition.y, this.recWidth, this.recHeight, 20);
 }
 
