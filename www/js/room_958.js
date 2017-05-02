@@ -9,6 +9,8 @@ var balls = [];
 var roomSound958;
 
 // sounds
+var alones = [];
+var alone;
 var arps = [];
 var arp;
 var brassbowls = [];
@@ -19,6 +21,8 @@ var choirs = [];
 var choir;
 var choirLows = [];
 var choirLow;
+var clockgrains = [];
+var clockgrain;
 var cpPongs = [];
 var cpPong;
 var crotales = [];
@@ -67,7 +71,7 @@ function preload() {
     harps.push(harp);
   }
 
-  for (var i = 0; i < 2; i++) {
+  for (var i = 0; i < 7; i++) {
     var cpPong = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/cpPong" + i + ".mp3");
     cpPongs.push(cpPong);
   }
@@ -77,12 +81,12 @@ function preload() {
     granulators.push(granulator);
   }
 
-  for (var i = 0; i < 5; i++) {
-    var jungle = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/jungle" + i + ".mp3");
-    jungles.push(jungle);
+  for (var i = 0; i < 7; i++) {
+    var muted = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/muted_bass" + i + ".mp3");
+    muteds.push(muted);
   }
 
- img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/room_958_web_2.jpg");
+ img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/room_958_web.jpg");
 }
 
 function setup() {
@@ -237,12 +241,14 @@ Ball.prototype.checkEdges = function() {
     if (this.sound === 0) {
       crotale = crotales[Math.floor(random(0, 4))];
       crotale.play();
-      crotale.setVolume(1);
+      crotale.pan(-1.0);
+      crotale.setVolume(0.2);
 
     } else if (this.sound === 1) {
       crotaleHigh = crotaleHighs[Math.floor(random(0, 4))];
       crotaleHigh.play();
-      crotaleHigh.setVolume(1);
+      crotaleHigh.pan(1.0);
+      crotaleHigh.setVolume(0.2);
 
     } else if (this.sound === 2) {
       cpPong = cpPongs[Math.floor(random(0, 7))];
@@ -257,14 +263,14 @@ Ball.prototype.checkEdges = function() {
       cpPong.setVolume(0.3);
 
     } else if (this.sound === 4) {
-      granulator = granulators[Math.floor(random(0, 3))];
-      granulator.play();
-      granulator.setVolume(0.2);
+      harp = harps[Math.floor(random(0, 4))];
+      harp.play();
+      harp.setVolume(0.1);
 
     } else if (this.sound === 5) {
-      jungle = jungles[Math.floor(random(0, 4))];
-      jungle.play();
-      jungle.setVolume(0.1);
+      muted = muteds[Math.floor(random(0, 4))];
+      muted.play();
+      muted.setVolume(0.5);
     }
 
     this.velocity.y *= -1;
