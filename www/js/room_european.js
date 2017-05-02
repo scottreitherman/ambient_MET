@@ -67,14 +67,14 @@ function preload() {
     brassbowls.push(brassbowl);
   }
 
-  for (var i = 0; i < 4; i++) {
+  for (var i = 0; i < 3; i++) {
     var choirLow = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/choirlow" + i + ".mp3");
     choirLows.push(choirLow);
   }
 
-  for (var i = 0; i < 2; i++) {
-    var p5pianoG = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/p5pianoG" + i + ".mp3");
-    p5pianoGs.push(p5pianoG);
+  for (var i = 0; i < 4; i++) {
+    var crotaleHigh = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/crotale_high" + i + ".mp3");
+    crotaleHighs.push(crotaleHigh);
   }
 
   for (var i = 0; i < 5; i++) {
@@ -83,7 +83,7 @@ function preload() {
   }
 
 
-  img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/european_wing_web_2.jpg");
+ img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/european_wing_web_2.jpg");
 
 }
 
@@ -91,6 +91,8 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   noCursor();
   image(img, 0, 0, width, height);
+  reverb = new p5.Reverb();
+
 
   roomSoundEuropean.loop();
   roomSoundEuropean.setVolume(0.3);
@@ -204,16 +206,16 @@ Ball.prototype.update = function() {
 Ball.prototype.display = function() {
   noStroke();
   //colorMode(HSB);
-  fill(265, 236, 183);
+  fill(180, 180, 180);
   ellipse(this.position.x, this.position.y, this.mass, this.mass);
 };
 
 Ball.prototype.displayRect = function() {
   //noStroke();
-  fill(215, 75, 88, 5);
+  fill(235, 175, 98, 5);
   // noFill();
   strokeWeight(5);
-  stroke(215, 75, 88);
+  stroke(235, 175, 98);
   rect(this.recPosition.x, this.recPosition.y, this.recWidth, this.recHeight, 20);
 }
 
@@ -229,34 +231,39 @@ Ball.prototype.checkEdges = function() {
     if (this.sound === 0) {
       crotale = crotales[Math.floor(random(0, 4))];
       crotale.play();
+      reverb.process(crotale, 5, 5);
       crotale.pan(-1.0);
-      crotale.setVolume(1);
+      crotale.setVolume(0.5);
 
     } else if (this.sound === 1) {
-      arp = arps[Math.floor(random(0, 4))];
-      arp.play();
-      arp.pan(1.0);
-      arp.setVolume(0.2);
+      crotaleHigh = crotaleHighs[Math.floor(random(0, 4))];
+      crotaleHigh.play();
+      reverb.process(crotaleHigh, 5, 5);
+      crotaleHigh.pan(1.0);
+      crotaleHigh.setVolume(0.5);
 
     } else if (this.sound === 2) {
-      choirLow = choirLows[Math.floor(random(0, 4))];
-      choirLow.play();
-      choirLow.setVolume(0.5);
+      arp = arps[Math.floor(random(0, 3))];
+      arp.play();
+      arp.pan(-0.7);
+      arp.setVolume(0.05);
 
     } else if (this.sound === 3) {
-      p5pianoG = p5pianoGs[Math.floor(random(0, 7))];
-      p5pianoG.play();
-      p5pianoG.setVolume(0.5);
+      choirLow = choirLows[Math.floor(random(0, 3))];
+      choirLow.play();
+      reverb.process(choirLow, 5, 5);
+      choirLow.setVolume(0.2);
 
     } else if (this.sound === 4) {
-      chime = chimes[Math.floor(random(0, 7))];
+      chime = chimes[Math.floor(random(0, 5))];
       chime.play();
-      chime.setVolume(0.8);
+      chime.setVolume(0.5);
 
     } else if (this.sound === 5) {
       brassbowl = brassbowls[Math.floor(random(0, 7))];
       brassbowl.play();
-      brassbowl.setVolume(0.8);
+      reverb.process(brassbowl, 5, 5);
+      brassbowl.setVolume(0.3);
     }
 
     this.velocity.y *= -1;

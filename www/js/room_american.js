@@ -81,7 +81,6 @@ function preload() {
 }
 
 function setup() {
-  //  createCanvas(1000, 650);
   createCanvas(windowWidth, windowHeight);
   noCursor();
   image(img, 0, 0, width, height);
