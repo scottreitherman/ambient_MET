@@ -318,3 +318,12 @@ img#imgMap {
     opacity: 1;
   }
 }
+
+#backButton{
+  /*position: absolute;*/
+  z-index: 99;
+  bottom: 100px:
+  left: 20px;
+  padding: 20px;
+  background-color: white;
+}

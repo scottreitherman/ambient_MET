@@ -1,4 +1,6 @@
 // We are in the Branch
+// note : get room_958_NEWweb.jpg working.  get clockgrains working.
+
 
 var recorder, soundOut, soundFile;
 var img;
@@ -9,6 +11,8 @@ var balls = [];
 var roomSound958;
 
 // sounds
+var alones = [];
+var alone;
 var arps = [];
 var arp;
 var brassbowls = [];
@@ -19,6 +23,8 @@ var choirs = [];
 var choir;
 var choirLows = [];
 var choirLow;
+var clockgrains = [];
+var clockgrain;
 var cpPongs = [];
 var cpPong;
 var crotales = [];
@@ -62,33 +68,33 @@ function preload() {
    crotaleHighs.push(crotaleHigh);
   }
 
-  for (var i = 0; i < 4; i++) {
-    var harp = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/backwardsHarp" + i + ".mp3");
-    harps.push(harp);
-  }
-
   for (var i = 0; i < 2; i++) {
-    var choir = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/choir" + i + ".mp3");
-    choirs.push(choir);
+    var clockgrain = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/clockgrain" + i + ".mp3");
+    clockgrains.push(clockgrain);
   }
 
-  for (var i = 0; i < 5; i++) {
-    var chime = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/chime" + i + ".mp3");
-    chimes.push(chime);
+  for (var i = 0; i < 7; i++) {
+    var cpPong = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/cpPong" + i + ".mp3");
+    cpPongs.push(cpPong);
   }
 
-  for (var i = 0; i < 5; i++) {
-    var jungle = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/jungle" + i + ".mp3");
-    jungles.push(jungle);
+  for (var i = 0; i < 3; i++) {
+    var granulator = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/granulatorA" + i + ".mp3");
+    granulators.push(granulator);
   }
 
- img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/room_958_web.jpg");
+  for (var i = 0; i < 7; i++) {
+    var muted = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/muted_bass" + i + ".mp3");
+    muteds.push(muted);
+  }
+
+ img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/room_958_NEWweb.jpg");
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   noCursor();
-  // image(img, 0, 0, width, height);
+  image(img, 0, 0, width, height);
 
   // var dt = new Date();
   //       currentHours = dt.getHours();
@@ -114,11 +120,12 @@ function setup() {
 }
 
 function draw() {
-    image(img, 0, 0, width, height);
-    textSize(40);
-    fill("BLUE");
-    textFont("Arial Black");
-    text("R O O M  9 5 8", ((width / 25)), (height - (height / 12)));
+//    image(img, 0, 0, width, height);
+textSize(32);
+fill("BLACK");
+textFont("HelveticaNeue-Bold");
+text("Room 958", ((width / 25)), (height - (height / 12)));
+
 
   // Forces on ball
   var gravity = createVector(0, 0.000001);
@@ -212,16 +219,16 @@ Ball.prototype.update = function() {
 Ball.prototype.display = function() {
   noStroke();
   //colorMode(HSB);
-  fill(265, 36, 83);
+  fill(180, 180, 180);
   ellipse(this.position.x, this.position.y, this.mass, this.mass);
 };
 
 Ball.prototype.displayRect = function() {
   //noStroke();
-  fill(265, 236, 183, 55);
+  fill(140, 75, 215, 5);
   // noFill();
   strokeWeight(5);
-  stroke(265, 236, 183);
+  stroke(140, 75, 215);
   rect(this.recPosition.x, this.recPosition.y, this.recWidth, this.recHeight, 20);
 }
 
@@ -237,32 +244,36 @@ Ball.prototype.checkEdges = function() {
     if (this.sound === 0) {
       crotale = crotales[Math.floor(random(0, 4))];
       crotale.play();
-      crotale.setVolume(1);
+      crotale.pan(-1.0);
+      crotale.setVolume(0.2);
 
     } else if (this.sound === 1) {
       crotaleHigh = crotaleHighs[Math.floor(random(0, 4))];
       crotaleHigh.play();
-      crotaleHigh.setVolume(1);
+      crotaleHigh.pan(1.0);
+      crotaleHigh.setVolume(0.2);
 
     } else if (this.sound === 2) {
-      choir = choirs[Math.floor(random(0, 2))];
-      choir.play();
-      choir.setVolume(0.3);
+      cpPong = cpPongs[Math.floor(random(0, 7))];
+      cpPong.play();
+      cpPong.pan(-1.0);
+      cpPong.setVolume(0.1);
 
     } else if (this.sound === 3) {
-      harp = harps[Math.floor(random(0, 4))];
-      harp.play();
-      harp.setVolume(0.1);
+      cpPong = cpPongs[Math.floor(random(0, 7))];
+      cpPong.play();
+      cpPong.pan(1.0);
+      cpPong.setVolume(0.1);
 
     } else if (this.sound === 4) {
-      chime = chimes[Math.floor(random(0, 5))];
-      chime.play();
-      chime.setVolume(0.8);
+      clockgrain = clockgrains[Math.floor(random(0, 2))];
+      clockgrain.play();
+      clockgrain.setVolume(0.1);
 
     } else if (this.sound === 5) {
-      jungle = jungles[Math.floor(random(0, 4))];
-      jungle.play();
-      jungle.setVolume(0.1);
+      muted = muteds[Math.floor(random(0, 4))];
+      muted.play();
+      muted.setVolume(0.5);
     }
 
     this.velocity.y *= -1;
