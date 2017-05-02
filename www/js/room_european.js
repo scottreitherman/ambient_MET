@@ -3,7 +3,7 @@
 var recorder, soundOut, soundFile;
 var img;
 var state = 0; // mousePress will increment from Record, to Stop, to
-var dt = new Date();
+// var dt = new Date();
 var balls = [];
 
 var roomSoundEuropean;
@@ -52,34 +52,34 @@ function preload() {
   // Sound assets preload
   roomSoundEuropean = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/european_roomsound.mp3");
 
+ for (var i = 0; i < 3; i++) {
+   var arp = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/arp_delaypad_G" + i + ".mp3");
+   arps.push(arp);
+  }
+
  for (var i = 0; i < 4; i++) {
    var crotale = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/crotale" + i + ".mp3");
    crotales.push(crotale);
   }
 
- for (var i = 0; i < 4; i++) {
-   var crotaleHigh = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/crotale_high" + i + ".mp3");
-   crotaleHighs.push(crotaleHigh);
+  for (var i = 0; i < 7; i++) {
+    var brassbowl = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/brassbowl" + i + ".mp3");
+    brassbowls.push(brassbowl);
   }
 
   for (var i = 0; i < 4; i++) {
-    var harp = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/backwardsHarp" + i + ".mp3");
-    harps.push(harp);
+    var choirLow = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/choir_Low" + i + ".mp3");
+    choirLows.push(choirLow);
   }
 
   for (var i = 0; i < 2; i++) {
-    var choir = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/choir" + i + ".mp3");
-    choirs.push(choir);
+    var p5pianoG = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/p5pianoG" + i + ".mp3");
+    p5pianoGs.push(p5pianoG);
   }
 
   for (var i = 0; i < 5; i++) {
     var chime = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/chime" + i + ".mp3");
     chimes.push(chime);
-  }
-
-  for (var i = 0; i < 5; i++) {
-    var jungle = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/jungle" + i + ".mp3");
-    jungles.push(jungle);
   }
 
 
@@ -229,32 +229,34 @@ Ball.prototype.checkEdges = function() {
     if (this.sound === 0) {
       crotale = crotales[Math.floor(random(0, 4))];
       crotale.play();
+      crotale.pan(-1.0);
       crotale.setVolume(1);
 
     } else if (this.sound === 1) {
-      crotaleHigh = crotaleHighs[Math.floor(random(0, 4))];
-      crotaleHigh.play();
-      crotaleHigh.setVolume(1);
+      arp = arps[Math.floor(random(0, 4))];
+      arp.play();
+      arp.pan(1.0);
+      arp.setVolume(0.2);
 
     } else if (this.sound === 2) {
-      choir = choirs[Math.floor(random(0, 2))];
-      choir.play();
-      choir.setVolume(0.3);
+      choirLow = choirLows[Math.floor(random(0, 4))];
+      choirLow.play();
+      choirLow.setVolume(0.5);
 
     } else if (this.sound === 3) {
-      harp = harps[Math.floor(random(0, 4))];
-      harp.play();
-      harp.setVolume(0.1);
+      p5pianoG = p5pianoGs[Math.floor(random(0, 7))];
+      p5pianoG.play();
+      p5pianoG.setVolume(0.5);
 
     } else if (this.sound === 4) {
-      chime = chimes[Math.floor(random(0, 5))];
+      chime = chimes[Math.floor(random(0, 7))];
       chime.play();
       chime.setVolume(0.8);
 
     } else if (this.sound === 5) {
-      jungle = jungles[Math.floor(random(0, 4))];
-      jungle.play();
-      jungle.setVolume(0.1);
+      brassbowl = brassbowls[Math.floor(random(0, 7))];
+      brassbowl.play();
+      brassbowl.setVolume(0.8);
     }
 
     this.velocity.y *= -1;

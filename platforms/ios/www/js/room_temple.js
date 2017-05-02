@@ -1,16 +1,12 @@
 // We are in the Branch
 
-//shouldn't this go in setup or draw?
-// var hammertime = new Hammer(myElement, myOptions);
-// hammertime.on('pan', function(ev) {
-//  console.log(ev);
-// });
-
 var recorder, soundOut, soundFile;
 var img;
 var state = 0; // mousePress will increment from Record, to Stop, to
 var dt = new Date();
 var balls = [];
+
+var roomSoundTemple;
 
 // sounds
 var arps = [];
@@ -54,6 +50,9 @@ var currentBall;
 
 function preload() {
   // Sound assets preload
+
+  roomSoundTemple = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/temple_roomsound.mp3");
+
 
  for (var i = 0; i < 4; i++) {
    var crotale = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/crotale" + i + ".mp3");
@@ -105,6 +104,9 @@ function setup() {
   //       var formData = $(this).serialize() + '&time=' + time;
   //
   // console.log(time);
+
+  roomSoundTemple.loop();
+  roomSoundTemple.setVolume(0.3);
 
   // FOR loop to push each ball object.
   for (var i = 0; i < 6; i++) {
@@ -182,17 +184,6 @@ function touchMoved()  {
 }
     return false;
 }
-  // if (touchX > 590 && touchX < 660 && touchY > 610 && touchY < 680) {
-  //   recorder.record(soundFile);
-  //   console.log("recording");
-  // } else if (touchX > 670 && touchX < 740 && touchY > 610 && touchY < 680) {
-  //   recorder.stop();
-  //   console.log("stop");
-  // } else if (touchX > 750 && touchX < 820 && touchY > 610 && touchY < 680) {
-  //   soundFile.play();
-  //   console.log("playing");
-  // }
-
 
 function display() {
   //	this.balls[i].applyForce(wind);
@@ -240,13 +231,6 @@ Ball.prototype.displayRect = function() {
   rect(this.recPosition.x, this.recPosition.y, this.recWidth, this.recHeight, 20);
 }
 
-// Ball.prototype.btnDisplay = function() {
-//   // draw a reactangle as a button
-//   noStroke();
-//   fill(0, 0, 88);
-//   rect(this.btnPosition.x, this.btnPosition.y, (width / 13.33), (height / 32.5));
-// };
-
 Ball.prototype.checkEdges = function() {
   if (this.position.x > (this.recPosition.x + (this.recWidth - (width / 40 + 1)))) {
     this.position.x = (this.recPosition.x + (this.recWidth - (width / 40 + 1)));
@@ -292,7 +276,6 @@ Ball.prototype.checkEdges = function() {
   } else if (this.position.y < (this.recPosition.y)) {
     this.position.y = this.recPosition.y;
     this.velocity.y *= -1;
-    // this.alpha -= 25;
   }
 };
 
