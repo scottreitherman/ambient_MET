@@ -11,6 +11,8 @@ var balls = [];
 var roomSoundTemple;
 
 // sounds
+var alones = [];
+var alone;
 var arps = [];
 var arp;
 var brassbowls = [];
