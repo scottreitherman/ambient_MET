@@ -82,7 +82,7 @@ function preload() {
     jungles.push(jungle);
   }
 
- img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/room_958_web.jpg");
+ img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/room_958_web_2.jpg");
 }
 
 function setup() {
