@@ -53,36 +53,31 @@ function preload() {
   roomSoundAmerican = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/american_wing_roomsound.mp3");
   // Sound assets preload
  for (var i = 0; i < 4; i++) {
-   var crotale = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/crotale" + i + ".mp3");
-   crotales.push(crotale);
-  }
-
- for (var i = 0; i < 4; i++) {
    var crotaleHigh = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/crotale_high" + i + ".mp3");
    crotaleHighs.push(crotaleHigh);
   }
 
-  for (var i = 0; i < 4; i++) {
-    var harp = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/backwardsHarp" + i + ".mp3");
-    harps.push(harp);
+ for (var i = 0; i < 7; i++) {
+   var muted = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/muted_bass" + i + ".mp3");
+   muteds.push(muted);
   }
 
-  for (var i = 0; i < 2; i++) {
-    var choir = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/choir" + i + ".mp3");
-    choirs.push(choir);
+  for (var i = 0; i < 3; i++) {
+    var arp = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/arp_delaypad_G" + i + ".mp3");
+    arps.push(arp);
   }
 
-  for (var i = 0; i < 5; i++) {
-    var chime = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/chime" + i + ".mp3");
-    chimes.push(chime);
+  for (var i = 0; i < 13; i++) {
+    var mk = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/mk" + i + ".mp3");
+    mks.push(mk);
   }
 
-  for (var i = 0; i < 5; i++) {
-    var jungle = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/jungle" + i + ".mp3");
-    jungles.push(jungle);
+  for (var i = 0; i < 9; i++) {
+    var chord = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/piano_chord" + i + ".mp3");
+    chords.push(chord);
   }
 
- img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/american_wing_web.jpg");
+ img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/american_wing_web2.jpg");
 }
 
 function setup() {
@@ -90,6 +85,9 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   noCursor();
   image(img, 0, 0, width, height);
+  reverb = new p5.Reverb();
+
+
 //
 //     button = createButton('GO TO MAP');
 //     button.position(10, 65);
@@ -113,7 +111,6 @@ function setup() {
   //
   // console.log(time);
 
-  roomSoundAmerican.play();
   roomSoundAmerican.loop();
   roomSoundAmerican.setVolume(0.3);
 
@@ -245,34 +242,40 @@ Ball.prototype.checkEdges = function() {
   }
   if (this.position.y > (this.recPosition.y + this.recHeight) - (width / 40 + (width / 200))) {
     if (this.sound === 0) {
-      crotale = crotales[Math.floor(random(0, 4))];
-      crotale.play();
-      crotale.setVolume(1);
-
-    } else if (this.sound === 1) {
       crotaleHigh = crotaleHighs[Math.floor(random(0, 4))];
       crotaleHigh.play();
+      crotaleHigh.pan(-1.0);
       crotaleHigh.setVolume(1);
 
+    } else if (this.sound === 1) {
+      arp = arps[Math.floor(random(0, 3))];
+      arp.play();
+      arp.setVolume(0.1);
+
     } else if (this.sound === 2) {
-      choir = choirs[Math.floor(random(0, 2))];
-      choir.play();
-      choir.setVolume(0.3);
+      mk = mks[Math.floor(random(0, 13))];
+      mk.play();
+      mk.pan(-1.0);
+      reverb.process(mk, 3, 2);
+      mk.setVolume(0.3);
 
     } else if (this.sound === 3) {
-      harp = harps[Math.floor(random(0, 4))];
-      harp.play();
-      harp.setVolume(0.1);
+      mk = mks[Math.floor(random(0, 13))];
+      mk.play();
+      mk.pan(1.0);
+      reverb.process(mk, 3, 2);
+      mk.setVolume(0.3);
 
     } else if (this.sound === 4) {
-      chime = chimes[Math.floor(random(0, 5))];
-      chime.play();
-      chime.setVolume(0.8);
+      chord = chords[Math.floor(random(0, 9))];
+      chord.play();
+      chord.setVolume(0.8);
 
     } else if (this.sound === 5) {
-      jungle = jungles[Math.floor(random(0, 4))];
-      jungle.play();
-      jungle.setVolume(0.1);
+      muted = muteds[Math.floor(random(0, 7))];
+      muted.play();
+      muted.setVolume(1);
+
     }
 
     this.velocity.y *= -1;

@@ -105,7 +105,6 @@ function setup() {
   //
   // console.log(time);
 
-  roomSoundTemple.play();
   roomSoundTemple.loop();
   roomSoundTemple.setVolume(0.3);
 

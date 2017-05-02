@@ -92,7 +92,6 @@ function setup() {
   noCursor();
   // image(img, 0, 0, width, height);
 
-  roomSoundEuropean.play();
   roomSoundEuropean.loop();
   roomSoundEuropean.setVolume(0.3);
 

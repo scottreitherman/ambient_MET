@@ -102,7 +102,6 @@ function setup() {
   //
   // console.log(time);
 
-  roomSound958.play();
   roomSound958.loop();
   roomSound958.setVolume(0.3);
 
