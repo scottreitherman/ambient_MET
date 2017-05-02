@@ -77,7 +77,7 @@ function preload() {
     chords.push(chord);
   }
 
- img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/american_wing_web2.jpg");
+ img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/american_wing_web_2.jpg");
 }
 
 function setup() {
@@ -123,10 +123,10 @@ function setup() {
 
 function draw() {
    // image(img, 0, 0, width, height);
-    textSize(40);
-    fill("RED");
-    textFont("Arial Black");
-    text("A M E R I C A N  w i n g", ((width / 25)), (height - (height / 12)));
+    textSize(32);
+    fill("BLACK");
+    textFont("HelveticaNeue-Bold");
+    text("American Wing", ((width / 25)), (height - (height / 12)));
 
   // Forces on ball
   var gravity = createVector(0, 0.000001);
@@ -219,16 +219,16 @@ Ball.prototype.update = function() {
 Ball.prototype.display = function() {
   noStroke();
   //colorMode(HSB);
-  fill(265, 36, 83);
+  fill(180, 180, 180);
   ellipse(this.position.x, this.position.y, this.mass, this.mass);
 };
 
 Ball.prototype.displayRect = function() {
   //noStroke();
-  fill(265, 236, 183, 5);
+  fill(255, 200, 113, 5);
   // noFill();
   strokeWeight(5);
-  stroke(265, 236, 183);
+  stroke(255, 240, 153);
   rect(this.recPosition.x, this.recPosition.y, this.recWidth, this.recHeight, 20);
 }
 
