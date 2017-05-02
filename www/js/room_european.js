@@ -212,10 +212,10 @@ Ball.prototype.display = function() {
 
 Ball.prototype.displayRect = function() {
   //noStroke();
-  fill(235, 175, 98, 5);
+  fill(235, 175, 108, 5);
   // noFill();
   strokeWeight(5);
-  stroke(235, 175, 98);
+  stroke(235, 175, 108);
   rect(this.recPosition.x, this.recPosition.y, this.recWidth, this.recHeight, 20);
 }
 
@@ -231,16 +231,16 @@ Ball.prototype.checkEdges = function() {
     if (this.sound === 0) {
       crotale = crotales[Math.floor(random(0, 4))];
       crotale.play();
-      reverb.process(crotale, 5, 5);
+      // reverb.process(crotale, 5, 5);
       crotale.pan(-1.0);
-      crotale.setVolume(0.5);
+      crotale.setVolume(0.3);
 
     } else if (this.sound === 1) {
       crotaleHigh = crotaleHighs[Math.floor(random(0, 4))];
       crotaleHigh.play();
-      reverb.process(crotaleHigh, 5, 5);
+      // reverb.process(crotaleHigh, 5, 5);
       crotaleHigh.pan(1.0);
-      crotaleHigh.setVolume(0.5);
+      crotaleHigh.setVolume(0.3);
 
     } else if (this.sound === 2) {
       arp = arps[Math.floor(random(0, 3))];
@@ -251,18 +251,19 @@ Ball.prototype.checkEdges = function() {
     } else if (this.sound === 3) {
       choirLow = choirLows[Math.floor(random(0, 3))];
       choirLow.play();
-      reverb.process(choirLow, 5, 5);
+      // reverb.process(choirLow, 5, 5);
       choirLow.setVolume(0.2);
 
     } else if (this.sound === 4) {
       chime = chimes[Math.floor(random(0, 5))];
       chime.play();
+      // reverb.process(chime, 3, 2);
       chime.setVolume(0.5);
 
     } else if (this.sound === 5) {
       brassbowl = brassbowls[Math.floor(random(0, 7))];
       brassbowl.play();
-      reverb.process(brassbowl, 5, 5);
+      // reverb.process(brassbowl, 2, 2);
       brassbowl.setVolume(0.3);
     }
 
