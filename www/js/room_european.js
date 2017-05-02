@@ -6,6 +6,8 @@ var state = 0; // mousePress will increment from Record, to Stop, to
 var dt = new Date();
 var balls = [];
 
+var roomSoundEuropean;
+
 // sounds
 var arps = [];
 var arp;
@@ -48,6 +50,7 @@ var currentBall;
 
 function preload() {
   // Sound assets preload
+  roomSoundEuropean = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/european_roomsound.mp3");
 
  for (var i = 0; i < 4; i++) {
    var crotale = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/crotale" + i + ".mp3");
@@ -89,6 +92,10 @@ function setup() {
   noCursor();
   // image(img, 0, 0, width, height);
 
+  roomSoundEuropean.play();
+  roomSoundEuropean.loop();
+  roomSoundEuropean.setVolume(0.3);
+
   // FOR loop to push each ball object.
   for (var i = 0; i < 6; i++) {
     balls.push(new Ball(createVector((width / 10) + i * (width / 6.33), (width / 7.69)), (width / 20.2), createVector((width / 20) + (width / 6.33) * i, (height / 13)), (width / 13.33), (height / 2.16) + i * (height / 13), i, false));
@@ -106,6 +113,7 @@ function draw() {
   // Forces on ball
   var gravity = createVector(0, 0.000001);
   // var wind = createVector(0, 0.001);
+
 
 
   for (var i = 0; i < balls.length; i++) {

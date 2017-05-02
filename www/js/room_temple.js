@@ -6,6 +6,8 @@ var state = 0; // mousePress will increment from Record, to Stop, to
 var dt = new Date();
 var balls = [];
 
+var roomSoundTemple;
+
 // sounds
 var arps = [];
 var arp;
@@ -48,6 +50,9 @@ var currentBall;
 
 function preload() {
   // Sound assets preload
+
+  roomSoundTemple = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/temple_roomsound.mp3");
+
 
  for (var i = 0; i < 4; i++) {
    var crotale = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/crotale" + i + ".mp3");
@@ -99,6 +104,10 @@ function setup() {
   //       var formData = $(this).serialize() + '&time=' + time;
   //
   // console.log(time);
+
+  roomSoundTemple.play();
+  roomSoundTemple.loop();
+  roomSoundTemple.setVolume(0.3);
 
   // FOR loop to push each ball object.
   for (var i = 0; i < 6; i++) {

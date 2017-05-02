@@ -8,7 +8,7 @@ var balls = [];
 var button;
 
 // sounds
-var roomSound;
+var roomSoundAmerican;
 var arps = [];
 var arp;
 var brassbowls = [];
@@ -50,7 +50,7 @@ var currentBall;
 
 function preload() {
 
-  roomSound = loadSound("");
+  roomSoundAmerican = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/american_wing_roomsound.mp3");
   // Sound assets preload
  for (var i = 0; i < 4; i++) {
    var crotale = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/crotale" + i + ".mp3");
@@ -113,6 +113,10 @@ function setup() {
   //
   // console.log(time);
 
+  roomSoundAmerican.play();
+  roomSoundAmerican.loop();
+  roomSoundAmerican.setVolume(0.3);
+
   // FOR loop to push each ball object.
   for (var i = 0; i < 6; i++) {
     balls.push(new Ball(createVector((width / 10) + i * (width / 6.33), (width / 7.69)), (width / 20.2), createVector((width / 20) + (width / 6.33) * i, (height / 13)), (width / 13.33), (height / 2.16) + i * (height / 13), i, false));
@@ -121,7 +125,7 @@ function setup() {
 }
 
 function draw() {
-  //  image(img, 0, 0, width, height);
+   // image(img, 0, 0, width, height);
     textSize(40);
     fill("RED");
     textFont("Arial Black");
