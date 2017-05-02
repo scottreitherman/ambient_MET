@@ -66,9 +66,9 @@ function preload() {
    crotaleHighs.push(crotaleHigh);
   }
 
-  for (var i = 0; i < 4; i++) {
-    var harp = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/backwardsHarp" + i + ".mp3");
-    harps.push(harp);
+  for (var i = 0; i < 2; i++) {
+    var clockgrain = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/backwardsHarp" + i + ".mp3");
+    clockgrains.push(clockgrain);
   }
 
   for (var i = 0; i < 7; i++) {
@@ -86,7 +86,7 @@ function preload() {
     muteds.push(muted);
   }
 
- img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/room_958_web.jpg");
+ img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/room_958_web_3.jpg");
 }
 
 function setup() {
@@ -263,9 +263,9 @@ Ball.prototype.checkEdges = function() {
       cpPong.setVolume(0.3);
 
     } else if (this.sound === 4) {
-      harp = harps[Math.floor(random(0, 4))];
-      harp.play();
-      harp.setVolume(0.1);
+      clockgrain = clockgrains[Math.floor(random(0, 2))];
+      clockgrain.play();
+      clockgrain.setVolume(0.1);
 
     } else if (this.sound === 5) {
       muted = muteds[Math.floor(random(0, 4))];
