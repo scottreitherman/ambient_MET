@@ -1,18 +1,14 @@
 // We are in the Branch
 
-//shouldn't this go in setup or draw?
-// var hammertime = new Hammer(myElement, myOptions);
-// hammertime.on('pan', function(ev) {
-//  console.log(ev);
-// });
-
 var recorder, soundOut, soundFile;
 var img;
 var state = 0; // mousePress will increment from Record, to Stop, to
 var dt = new Date();
 var balls = [];
+var button;
 
 // sounds
+var roomSound;
 var arps = [];
 var arp;
 var brassbowls = [];
@@ -53,17 +49,9 @@ var touchEnd;
 var currentBall;
 
 function preload() {
+
+  roomSound = loadSound("");
   // Sound assets preload
-
-    // for (var i = 0; i < 2; i++) {
-    //   var jup = loadSound('jup' + i + '.mp3');
-    //   jups.push(jup);
-    // }
-
-//  bottom4 = loadSound('https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/jup1.mp3');
-//  bottom5 = loadSound('https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/p5pianoG4.mp3');
-
-
  for (var i = 0; i < 4; i++) {
    var crotale = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/crotale" + i + ".mp3");
    crotales.push(crotale);
@@ -101,7 +89,17 @@ function setup() {
   //  createCanvas(1000, 650);
   createCanvas(windowWidth, windowHeight);
   noCursor();
-  // image(img, 0, 0, width, height);
+  image(img, 0, 0, width, height);
+//
+//     button = createButton('GO TO MAP');
+//     button.position(10, 65);
+//     button.touch(returnHome);
+//
+// function returnHome() {
+//     // var name = input.value();
+//     screen1.html();
+//     // input.value('');
+//    }
 
   // var dt = new Date();
   //       currentHours = dt.getHours();
@@ -114,33 +112,23 @@ function setup() {
   //       var formData = $(this).serialize() + '&time=' + time;
   //
   // console.log(time);
- // textFont("Times New Roman");
 
   // FOR loop to push each ball object.
   for (var i = 0; i < 6; i++) {
     balls.push(new Ball(createVector((width / 10) + i * (width / 6.33), (width / 7.69)), (width / 20.2), createVector((width / 20) + (width / 6.33) * i, (height / 13)), (width / 13.33), (height / 2.16) + i * (height / 13), i, false));
     // balls.push(new Ball(createVector(100 + i * 150, 130), createVector(50 + i * 150, 30), 50, createVector(50 + 150 * i, 50), 75, 300 + i * 50, i, false));
   }
-
-  // textSize(48);
-  // fill(265, 236, 183);
-  // text("E G Y P T I A N  t e m p l e", ((width / 25)), (height - (height / 12)));
-
-
 }
 
 function draw() {
-    image(img, 0, 0, width, height);
+  //  image(img, 0, 0, width, height);
     textSize(40);
     fill("RED");
     textFont("Arial Black");
     text("A M E R I C A N  w i n g", ((width / 25)), (height - (height / 12)));
 
-
   // Forces on ball
   var gravity = createVector(0, 0.000001);
-  // var wind = createVector(0, 0.001);
-
 
   for (var i = 0; i < balls.length; i++) {
     // balls[i].btnDisplay();
@@ -177,7 +165,6 @@ function touchStarted() {
   }
 }
 
-
 function touchEnded() {
   if (currentBall != null) {
   var touchEnd = createVector(touchX, touchY);
@@ -198,17 +185,6 @@ function touchMoved()  {
 }
     return false;
 }
-  // if (touchX > 590 && touchX < 660 && touchY > 610 && touchY < 680) {
-  //   recorder.record(soundFile);
-  //   console.log("recording");
-  // } else if (touchX > 670 && touchX < 740 && touchY > 610 && touchY < 680) {
-  //   recorder.stop();
-  //   console.log("stop");
-  // } else if (touchX > 750 && touchX < 820 && touchY > 610 && touchY < 680) {
-  //   soundFile.play();
-  //   console.log("playing");
-  // }
-
 
 function display() {
   //	this.balls[i].applyForce(wind);
@@ -231,7 +207,6 @@ function Ball(position, mass, recPosition, recWidth, recHeight, sound, move) {
   this.recHeight = recHeight;
   this.recWidth = recWidth;
   this.sound = sound;
-  //  this.alpha = 255;
   this.move = move;
 }
 
@@ -255,13 +230,6 @@ Ball.prototype.displayRect = function() {
   stroke(265, 236, 183);
   rect(this.recPosition.x, this.recPosition.y, this.recWidth, this.recHeight, 20);
 }
-
-// Ball.prototype.btnDisplay = function() {
-//   // draw a reactangle as a button
-//   noStroke();
-//   fill(0, 0, 88);
-//   rect(this.btnPosition.x, this.btnPosition.y, (width / 13.33), (height / 32.5));
-// };
 
 Ball.prototype.checkEdges = function() {
   if (this.position.x > (this.recPosition.x + (this.recWidth - (width / 40 + 1)))) {
@@ -308,7 +276,6 @@ Ball.prototype.checkEdges = function() {
   } else if (this.position.y < (this.recPosition.y)) {
     this.position.y = this.recPosition.y;
     this.velocity.y *= -1;
-    // this.alpha -= 25;
   }
 };
 

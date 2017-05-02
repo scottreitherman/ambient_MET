@@ -23,19 +23,25 @@
         <script type="text/javascript">
           var currentScreen = null;
           var screen1 = null;
-          var screen2 = null;
+          var dt = null;
+          // var screen2 = null;
+          var searchButton = null;
+          var room_958 = null;
+          var room_american = null;
+          var room_european = null;
+          var room_temple = null;
           var searchButton = null;
 
 
-<!--  if any more content security errors pop up delete this line  -->
-        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-
-        <!-- <link href="https://fonts.googleapis.com/css?family=Unica+One" rel="stylesheet"> -->
+// <!--  if any more content security errors pop up delete this line  -->
+//         <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
+//         <meta name="format-detection" content="telephone=no">
+//         <meta name="msapplication-tap-highlight" content="no">
+        //
+        // <!-- <link href="https://fonts.googleapis.com/css?family=Unica+One" rel="stylesheet"> -->
 
         function buttonClicked() {
-          changeScreen(screen2);
+          changeScreen(room_958);
         }
 
         function loaded() {
@@ -43,7 +49,7 @@
               searchButton.addEventListener('click', buttonClicked);
 
               screen1 = document.getElementById('screen1');
-              screen2 = document.getElementById('screen2');
+              room_958 = document.getElementById('#ninefive');
               changeScreen(screen1);
 
                 // Cordova is ready for native integration/plugins/cordova specific

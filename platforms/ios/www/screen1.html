@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Ambient Met</title>
+        <link rel="stylesheet" href="./css/index.css">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
         <script src="js/jquery-3.1.1.js"></script>
@@ -23,27 +24,31 @@
         <script type="text/javascript">
           var currentScreen = null;
           var screen1 = null;
-          var screen2 = null;
+          // var screen2 = null;
+          var room_958 = null;
+          var room_american = null;
+          var room_european = null;
+          var room_temple = null;
           var searchButton = null;
 
 
-<!--  if any more content security erros pop up delete this line  -->
+<!--  if any more content security errors pop up delete this line  -->
         <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
 
         <!-- <link href="https://fonts.googleapis.com/css?family=Unica+One" rel="stylesheet"> -->
 
-        function buttonClicked() {
-          changeScreen(screen2);
-        }
+        // function buttonClicked() {
+        //   changeScreen(room_temple);
+        // }
 
         function loaded() {
               searchButton = document.getElementById("searchbutton");
               searchButton.addEventListener('click', buttonClicked);
 
               screen1 = document.getElementById('screen1');
-              screen2 = document.getElementById('screen2');
+              room_temple = document.getElementById('temple');
               changeScreen(screen1);
 
                 // Cordova is ready for native integration/plugins/cordova specific
@@ -92,7 +97,6 @@
         </div> -->
 
         <div class="app">
-            <h1>WELCOME TO AMBIENT MET</h1>
             <div id="deviceready" class="blink">
                 <!-- <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p> -->
@@ -102,12 +106,31 @@
             </div>
         </div>
 
+          <a href="room_958.html">
+              <div id="ninefive"></div>
+              <div id="ninefivecircle"></div>
+          </a>
+
+          <a href="room_temple.html">
+              <div id="temple"></div>
+              <div id="templecircle"></div>
+          </a>
+
+          <a href="room_european.html">
+              <div id="european"></div>
+              <div id="europeancircle"></div>
+          </a>
+
+          <a href="room_american.html">
+              <div id="american"></div>
+              <div id="americancircle"></div>
+          </a>
 
         <div id="screen1">
           <div id="outter">
             <div id="map">
 
-              <a href="screen2.html">  <img src="img/met_map.jpg" alt="" width="100%"></a>
+               <img src="img/mapNoCircles.jpg" alt="" id='imgMap'>
               <!-- <img src="" -->
             </div>
 

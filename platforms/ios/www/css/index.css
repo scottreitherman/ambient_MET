@@ -30,7 +30,7 @@ body {
 
 /* Portrait layout (default) */
 .app {
-    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+    /*background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */*/
     position:absolute;             /* position in the center of the screen */
     left:50%;
     top:50%;
@@ -124,4 +124,184 @@ h1 {
 .blink {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
+}
+
+div#ninefive {
+  background-color: blue;
+  height: 38px;
+  width: 43px;
+  position: absolute;
+  top: 86px;
+  right: 365px;
+  z-index: 5px;
+  opacity: 0;
+}
+
+div#ninefivecircle {
+  background-color: #B18697;
+  height: 60px;
+  width: 60px;
+  animation: circle_ninefive 0.3s ease-in;
+  border-radius: 75px;
+  position: absolute;
+  top: 20px;
+  right: 662px;
+  z-index: 5px;
+  opacity: 1;
+}
+
+div#european {
+  background-color: yellow;
+  height: 120px;
+  width: 50px;
+  position: absolute;
+  top: 137px;
+  right: 422px;
+  z-index: 5px;
+    opacity: 0;
+}
+
+div#europeancircle {
+  background-color: #A45141;
+  height: 60px;
+  width: 60px;
+  animation: circle_european 0.6s ease-in;
+  border-radius: 75px;
+  position: absolute;
+  top: 222px;
+  right: 665px;
+  z-index: 5px;
+  opacity: 1;
+}
+
+div#american {
+  background-color: red;
+  height: 50px;
+  width: 65px;
+  position: absolute;
+  top: 158px;
+  right: 220px;
+  z-index: 5px;
+  opacity: 0;
+}
+
+div#americancircle {
+  background-color: #EBB120;
+  height: 60px;
+  width: 60px;
+  animation: circle_american 0.9s ease-in;
+  border-radius: 75px;
+  position: absolute;
+  top: 115px;
+  right: 25px;
+  z-index: 5px;
+  opacity: 1;
+}
+
+
+div#temple {
+  background-color: blue;
+  height: 100px;
+  width: 70px;
+  position: absolute;
+  top: 206px;
+  right: 128px;
+  z-index: 5px;
+  opacity: 0;
+}
+
+div#templecircle {
+  background-color: #B58C72;
+  height: 60px;
+  width: 60px;
+  animation: circle_temple 1.2s ease-in;
+  border-radius: 75px;
+  position: absolute;
+  top: 243px;
+  right: 12px;
+  z-index: 5px;
+  opacity: 1;
+}
+
+img#imgMap {
+  width: 100%;
+  top: 0px;
+  position: absolute;
+  z-index: -3;
+}
+
+@keyframes circle_american {
+  0% {
+    width: 0px;
+    height: 0px;
+    top: 145px;
+    right: 25px;
+    background-color: #EBB120;
+    opacity: 0;
+  }
+  100% {
+    width: 60px;
+    height: 60px;
+    top: 115px;
+    right: 25px;
+    background-color: #EBB120;
+    opacity: 1;
+  }
+}
+
+@keyframes circle_european {
+  0% {
+    width: 0px;
+    height: 0px;
+    top: 230px;
+    right: 690px;
+    background-color: #A45141;
+    opacity: 0;
+  }
+  100% {
+    width: 60px;
+    height: 60px;
+    top: 222px;
+    right: 665px;
+    background-color: #A45141;
+    opacity: 1;
+  }
+}
+
+@keyframes circle_ninefive {
+  0% {
+    width: 0px;
+    height: 0px;
+    top: 40px;
+    right: 670px;
+    background-color: #B18697;
+    opacity: 0;
+  }
+  100% {
+    width: 60px;
+    height: 60px;
+    top: 20px;
+    right: 662px;
+    background-color: #B18697;
+    opacity: 1;
+  }
+}
+
+@keyframes circle_temple {
+  0% {
+    width: 0px;
+    height: 0px;
+    top: 260px;
+    right: 10px;
+    background-color: #B58C72;
+    opacity: 0;
+  }
+  100% {
+    width: 60px;
+    height: 60px;
+    top: 243px;
+    right: 12px;
+    background-color: #B58C72;
+    opacity: 1;
+  }
 }
