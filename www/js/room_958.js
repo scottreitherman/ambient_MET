@@ -1,4 +1,6 @@
 // We are in the Branch
+// note : get room_958_NEWweb.jpg working.  get clockgrains working.
+
 
 var recorder, soundOut, soundFile;
 var img;
@@ -86,7 +88,7 @@ function preload() {
     muteds.push(muted);
   }
 
- img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/room_958_web.jpg");
+ img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/room_958_NEWweb.jpg");
 }
 
 function setup() {
@@ -255,13 +257,13 @@ Ball.prototype.checkEdges = function() {
       cpPong = cpPongs[Math.floor(random(0, 7))];
       cpPong.play();
       cpPong.pan(-1.0);
-      cpPong.setVolume(0.3);
+      cpPong.setVolume(0.1);
 
     } else if (this.sound === 3) {
       cpPong = cpPongs[Math.floor(random(0, 7))];
       cpPong.play();
       cpPong.pan(1.0);
-      cpPong.setVolume(0.3);
+      cpPong.setVolume(0.1);
 
     } else if (this.sound === 4) {
       clockgrain = clockgrains[Math.floor(random(0, 2))];

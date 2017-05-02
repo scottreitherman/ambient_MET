@@ -1,5 +1,7 @@
 // We are in the Branch
 
+// note :: get Alone pad working.  get temple_NEWweb.jpg workingp5.Vector
+
 var recorder, soundOut, soundFile;
 var img;
 var state = 0; // mousePress will increment from Record, to Stop, to
@@ -64,9 +66,9 @@ function preload() {
    crotaleHighs.push(crotaleHigh);
   }
 
-  for (var i = 0; i < 4; i++) {
-    var harp = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/backwardsHarp" + i + ".mp3");
-    harps.push(harp);
+  for (var i = 0; i < 1; i++) {
+    var alone = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/alone" + i + ".mp3");
+    alones.push(alone);
   }
 
   for (var i = 0; i < 2; i++) {
@@ -84,14 +86,14 @@ function preload() {
     jungles.push(jungle);
   }
 
- img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/temple_web.jpg");
+ img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/temple_NEWweb.jpg");
 }
 
 function setup() {
   //  createCanvas(1000, 650);
   createCanvas(windowWidth, windowHeight);
   noCursor();
-  // image(img, 0, 0, width, height);
+  image(img, 0, 0, width, height);
 
   // var dt = new Date();
   //       currentHours = dt.getHours();
@@ -116,12 +118,11 @@ function setup() {
 }
 
 function draw() {
-    image(img, 0, 0, width, height);
-    textSize(40);
-    fill(265, 236, 183);
-    textFont("Arial Black");
-    text("E G Y P T I A N  t e m p l e", ((width / 25)), (height - (height / 12)));
-
+//    image(img, 0, 0, width, height);
+    textSize(32);
+    fill("BLACK");
+    textFont("HelveticaNeue-Bold");
+    text("Egyptian Temple", ((width / 25)), (height - (height / 12)));
 
   // Forces on ball
   var gravity = createVector(0, 0.000001);
@@ -218,16 +219,16 @@ Ball.prototype.update = function() {
 Ball.prototype.display = function() {
   noStroke();
   //colorMode(HSB);
-  fill(265, 36, 83);
+  fill(180, 180, 180);
   ellipse(this.position.x, this.position.y, this.mass, this.mass);
 };
 
 Ball.prototype.displayRect = function() {
   //noStroke();
-  fill(265, 236, 183, 5);
+  fill(200, 150, 100, 5);
   // noFill();
   strokeWeight(5);
-  stroke(265, 236, 183);
+  stroke(200, 150, 100);
   rect(this.recPosition.x, this.recPosition.y, this.recWidth, this.recHeight, 20);
 }
 
@@ -243,27 +244,30 @@ Ball.prototype.checkEdges = function() {
     if (this.sound === 0) {
       crotale = crotales[Math.floor(random(0, 4))];
       crotale.play();
-      crotale.setVolume(1);
+      crotale.pan(-1.0);
+      crotale.setVolume(0.3);
 
     } else if (this.sound === 1) {
       crotaleHigh = crotaleHighs[Math.floor(random(0, 4))];
       crotaleHigh.play();
-      crotaleHigh.setVolume(1);
+      crotaleHigh.pan(1.0);
+      crotaleHigh.setVolume(0.3);
 
     } else if (this.sound === 2) {
       choir = choirs[Math.floor(random(0, 2))];
       choir.play();
-      choir.setVolume(0.3);
+      choir.pan(0.8);
+      choir.setVolume(0.1);
 
     } else if (this.sound === 3) {
-      harp = harps[Math.floor(random(0, 4))];
-      harp.play();
-      harp.setVolume(0.1);
+      alone = alones[Math.floor(random(0, 1))];
+      alone.play();
+      alone.setVolume(0.2);
 
     } else if (this.sound === 4) {
       chime = chimes[Math.floor(random(0, 5))];
       chime.play();
-      chime.setVolume(0.8);
+      chime.setVolume(0.2);
 
     } else if (this.sound === 5) {
       jungle = jungles[Math.floor(random(0, 4))];
