@@ -68,7 +68,7 @@ function preload() {
   }
 
   for (var i = 0; i < 4; i++) {
-    var choirLow = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/choir_Low" + i + ".mp3");
+    var choirLow = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/choirlow" + i + ".mp3");
     choirLows.push(choirLow);
   }
 
@@ -83,14 +83,14 @@ function preload() {
   }
 
 
-  img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/european_wing_web.jpg");
+  img = loadImage("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/european_wing_web_2.jpg");
 
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   noCursor();
-  // image(img, 0, 0, width, height);
+  image(img, 0, 0, width, height);
 
   roomSoundEuropean.loop();
   roomSoundEuropean.setVolume(0.3);
@@ -103,11 +103,11 @@ function setup() {
 }
 
 function draw() {
-  image(img, 0, 0, width, height);
-  textSize(40);
-  textFont("Arial Black");
+  // image(img, 0, 0, width, height);
+  textSize(32);
   fill("BLACK");
-  text("E U R O P E A N  s c u l p t u r e", ((width / 20)), (height - (height / 15)));
+  textFont("HelveticaNeue-Bold");
+  text("European Sculpture", ((width / 20)), (height - (height / 15)));
 
   // Forces on ball
   var gravity = createVector(0, 0.000001);
@@ -210,10 +210,10 @@ Ball.prototype.display = function() {
 
 Ball.prototype.displayRect = function() {
   //noStroke();
-  fill(265, 36, 83, 5);
+  fill(215, 75, 88, 5);
   // noFill();
   strokeWeight(5);
-  stroke(265, 36, 83);
+  stroke(215, 75, 88);
   rect(this.recPosition.x, this.recPosition.y, this.recWidth, this.recHeight, 20);
 }
 
