@@ -37,6 +37,8 @@ var jups = [];
 var jup;
 var mks = [];
 var mk;
+var mks2 = [];
+var mk2;
 var muteds = [];
 var muted;
 var pianos = [];
@@ -72,6 +74,11 @@ function preload() {
     mks.push(mk);
   }
 
+  for (var i = 0; i < 13; i++) {
+    var mk2 = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/mk" + i + ".mp3");
+    mks2.push(mk2);
+  }
+
   for (var i = 0; i < 9; i++) {
     var chord = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/piano_chord" + i + ".mp3");
     chords.push(chord);
@@ -86,18 +93,8 @@ function setup() {
   noCursor();
   image(img, 0, 0, width, height);
   reverb = new p5.Reverb();
-
-
-//
-//     button = createButton('GO TO MAP');
-//     button.position(10, 65);
-//     button.touch(returnHome);
-//
-// function returnHome() {
-//     // var name = input.value();
-//     screen1.html();
-//     // input.value('');
-//    }
+  delay = new p5.Delay();
+  filter = new p5.BandPass();
 
   // var dt = new Date();
   //       currentHours = dt.getHours();
@@ -245,24 +242,29 @@ Ball.prototype.checkEdges = function() {
       crotaleHigh = crotaleHighs[Math.floor(random(0, 4))];
       crotaleHigh.play();
       crotaleHigh.pan(-1.0);
+      delay.process(crotaleHigh, .22, .5, 2300);
       crotaleHigh.setVolume(1);
 
     } else if (this.sound === 1) {
       arp = arps[Math.floor(random(0, 3))];
       arp.play();
-      arp.setVolume(0.1);
+      arp.setVolume(0.2);
 
     } else if (this.sound === 2) {
       mk = mks[Math.floor(random(0, 13))];
       mk.play();
       mk.pan(-1.0);
       reverb.process(mk, 3, 2);
+      delay.process(mk, .12, .4, 2300);
       mk.setVolume(0.3);
 
     } else if (this.sound === 3) {
       mk = mks[Math.floor(random(0, 13))];
       mk.play();
       mk.pan(1.0);
+      filter.freq(mk);
+      filter.res(50);
+
       reverb.process(mk, 3, 2);
       mk.setVolume(0.3);
 
