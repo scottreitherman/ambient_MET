@@ -19,7 +19,7 @@
 
 //
 //  MainViewController.h
-//  Ambient Met
+//  ambient MET
 //
 //  Created by ___FULLUSERNAME___ on ___DATE___.
 //  Copyright ___ORGANIZATIONNAME___ ___YEAR___. All rights reserved.
@@ -92,7 +92,12 @@
     return[super newCordovaViewWithFrame:bounds];
 }
 
-- (NSUInteger)supportedInterfaceOrientations 
+// CB-12098
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < 90000  
+- (NSUInteger)supportedInterfaceOrientations
+#else  
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+#endif
 {
     return [super supportedInterfaceOrientations];
 }

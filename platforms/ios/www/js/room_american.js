@@ -6,7 +6,7 @@ var state = 0; // mousePress will increment from Record, to Stop, to
 var dt = new Date();
 var balls = [];
 var button;
-
+var radius;
 // sounds
 var roomSoundAmerican;
 var arps = [];
@@ -37,6 +37,8 @@ var jups = [];
 var jup;
 var mks = [];
 var mk;
+var mks2 = [];
+var mk2;
 var muteds = [];
 var muted;
 var pianos = [];
@@ -72,6 +74,11 @@ function preload() {
     mks.push(mk);
   }
 
+  for (var i = 0; i < 13; i++) {
+    var mk2 = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/mk" + i + ".mp3");
+    mks2.push(mk2);
+  }
+
   for (var i = 0; i < 9; i++) {
     var chord = loadSound("https://raw.githubusercontent.com/scottreitherman/ambient_MET/master/www/img/mp3/piano_chord" + i + ".mp3");
     chords.push(chord);
@@ -86,18 +93,8 @@ function setup() {
   noCursor();
   image(img, 0, 0, width, height);
   reverb = new p5.Reverb();
-
-
-//
-//     button = createButton('GO TO MAP');
-//     button.position(10, 65);
-//     button.touch(returnHome);
-//
-// function returnHome() {
-//     // var name = input.value();
-//     screen1.html();
-//     // input.value('');
-//    }
+  delay = new p5.Delay();
+  radius = (window / 40.4);
 
   // var dt = new Date();
   //       currentHours = dt.getHours();
@@ -116,8 +113,8 @@ function setup() {
 
   // FOR loop to push each ball object.
   for (var i = 0; i < 6; i++) {
+ // constructor Fn: ball  - create vector (starting x,                      starting y), ball diameter,       rect - (start x,                                start y),    rect width,              rect height,               i, balls start frozen)
     balls.push(new Ball(createVector((width / 10) + i * (width / 6.33), (width / 7.69)), (width / 20.2), createVector((width / 20) + (width / 6.33) * i, (height / 13)), (width / 13.33), (height / 2.16) + i * (height / 13), i, false));
-    // balls.push(new Ball(createVector(100 + i * 150, 130), createVector(50 + i * 150, 30), 50, createVector(50 + 150 * i, 50), 75, 300 + i * 50, i, false));
   }
 }
 
@@ -245,24 +242,27 @@ Ball.prototype.checkEdges = function() {
       crotaleHigh = crotaleHighs[Math.floor(random(0, 4))];
       crotaleHigh.play();
       crotaleHigh.pan(-1.0);
+      delay.process(crotaleHigh, .22, .5, 2300);
       crotaleHigh.setVolume(1);
 
     } else if (this.sound === 1) {
       arp = arps[Math.floor(random(0, 3))];
       arp.play();
-      arp.setVolume(0.1);
+      arp.setVolume(0.2);
 
     } else if (this.sound === 2) {
       mk = mks[Math.floor(random(0, 13))];
       mk.play();
       mk.pan(-1.0);
       reverb.process(mk, 3, 2);
+      delay.process(mk, .12, .4, 2300);
       mk.setVolume(0.3);
 
     } else if (this.sound === 3) {
       mk = mks[Math.floor(random(0, 13))];
       mk.play();
       mk.pan(1.0);
+
       reverb.process(mk, 3, 2);
       mk.setVolume(0.3);
 

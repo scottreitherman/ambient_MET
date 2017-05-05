@@ -1,0 +1,19 @@
+{
+    "name": "io.cordova.hellocordova",
+    "version": "1.0.0",
+    "displayName": "Ambient Met",
+    "cordova": {
+        "platforms": [
+            "ios"
+        ],
+        "plugins": {
+            "cordova-plugin-screen-orientation": {},
+            "cordova-plugin-whitelist": {}
+        }
+    },
+    "dependencies": {
+        "cordova-ios": "^4.4.0",
+        "cordova-plugin-screen-orientation": "~2.0.1",
+        "cordova-plugin-whitelist": "1"
+    }
+}

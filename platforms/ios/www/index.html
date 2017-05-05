@@ -2,6 +2,8 @@
 <html>
     <head>
         <title>Ambient Met</title>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
         <script src="js/jquery-3.1.1.js"></script>
@@ -21,6 +23,7 @@
 
  <!-- diff screen initial null states -->
         <script type="text/javascript">
+
           var currentScreen = null;
           var screen1 = null;
           var dt = null;
@@ -36,8 +39,7 @@
 
 // <!--  if any more content security errors pop up delete this line  -->
 //         <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
+
         //
         // <!-- <link href="https://fonts.googleapis.com/css?family=Unica+One" rel="stylesheet"> -->
 
@@ -46,9 +48,7 @@
         }
 
         function loaded() {
-              searchButton = document.getElementById("searchbutton");
-              searchButton.addEventListener('click', buttonClicked);
-
+              //screen.orientation.lock('landscape');
               screen1 = document.getElementById('screen1');
               room_958 = document.getElementById('#ninefive');
               changeScreen(screen1);

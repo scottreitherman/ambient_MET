@@ -7,20 +7,12 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.screenorientation"
         ]
-    },
-    {
-        "id": "cordova-plugin-screen-orientation.screenorientation.ios",
-        "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.ios.js",
-        "pluginId": "cordova-plugin-screen-orientation",
-        "merges": [
-            "cordova.plugins.screenorientation"
-        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "cordova-plugin-screen-orientation": "1.4.2",
+    "cordova-plugin-screen-orientation": "2.0.1",
     "cordova-plugin-whitelist": "1.3.1"
 };
 // BOTTOM OF METADATA

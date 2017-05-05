@@ -15,10 +15,10 @@
         <param name="ios-package" value="CDVGestureHandler" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="YoikScreenOrientation">
-        <param name="ios-package" value="YoikScreenOrientation" />
+    <feature name="CDVOrientation">
+        <param name="ios-package" value="CDVOrientation" />
     </feature>
-    <name>Ambient Met</name>
+    <name>ambient MET</name>
     <description>
         An Apace Cordova application and interactive musical response piece to various rooms at the Metropolitan Museum of Art.
     </description>
@@ -33,6 +33,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <icon height="180" src="www/img/6plus_icon.png" width="180" />
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
     <preference name="AllowInlineMediaPlayback" value="false" />
@@ -48,4 +49,5 @@
     <preference name="PageLength" value="0" />
     <preference name="PaginationBreakingMode" value="page" />
     <preference name="PaginationMode" value="unpaginated" />
+    <preference name="Orientation" value="landscape" />
 </widget>

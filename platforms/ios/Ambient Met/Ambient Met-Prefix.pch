@@ -17,7 +17,7 @@
  under the License.
  */
 //
-// Prefix header for all source files of the 'Ambient Met' target in the 'Ambient Met' project
+// Prefix header for all source files of the 'ambient MET' target in the 'ambient MET' project
 //
 
 #ifdef __OBJC__
