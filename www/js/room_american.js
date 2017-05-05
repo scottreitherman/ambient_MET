@@ -6,7 +6,7 @@ var state = 0; // mousePress will increment from Record, to Stop, to
 var dt = new Date();
 var balls = [];
 var button;
-
+var radius;
 // sounds
 var roomSoundAmerican;
 var arps = [];
@@ -94,7 +94,7 @@ function setup() {
   image(img, 0, 0, width, height);
   reverb = new p5.Reverb();
   delay = new p5.Delay();
-  filter = new p5.BandPass();
+  radius = (window / 40.4);
 
   // var dt = new Date();
   //       currentHours = dt.getHours();
@@ -113,8 +113,8 @@ function setup() {
 
   // FOR loop to push each ball object.
   for (var i = 0; i < 6; i++) {
+ // constructor Fn: ball  - create vector (starting x,                      starting y), ball diameter,       rect - (start x,                                start y),    rect width,              rect height,               i, balls start frozen)
     balls.push(new Ball(createVector((width / 10) + i * (width / 6.33), (width / 7.69)), (width / 20.2), createVector((width / 20) + (width / 6.33) * i, (height / 13)), (width / 13.33), (height / 2.16) + i * (height / 13), i, false));
-    // balls.push(new Ball(createVector(100 + i * 150, 130), createVector(50 + i * 150, 30), 50, createVector(50 + 150 * i, 50), 75, 300 + i * 50, i, false));
   }
 }
 
@@ -262,8 +262,6 @@ Ball.prototype.checkEdges = function() {
       mk = mks[Math.floor(random(0, 13))];
       mk.play();
       mk.pan(1.0);
-      filter.freq(mk);
-      filter.res(50);
 
       reverb.process(mk, 3, 2);
       mk.setVolume(0.3);

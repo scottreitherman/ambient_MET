@@ -113,9 +113,8 @@ function setup() {
 
   // FOR loop to push each ball object.
   for (var i = 0; i < 6; i++) {
-     //  ball - create vector (starting x, starting y), ball diameter, rect - (start x, start y), rect width, rect height, i, balls start frozen)
+    // constructor Fn: ball  - create vector (starting x,                      starting y), ball diameter,       rect - (start x,                             start y),    rect width,              rect height,               i, balls start frozen)
     balls.push(new Ball(createVector((width / 10) + i * (width / 6.33), (width / 7.69)), (width / 20.2), createVector((width / 20) + (width / 6.33) * i, (height / 13)), (width / 13.33), (height / 2.16) + i * (height / 13), i, false));
-    // balls.push(new Ball(createVector(100 + i * 150, 130), createVector(50 + i * 150, 30), 50, createVector(50 + 150 * i, 50), 75, 300 + i * 50, i, false));
   }
 }
 
